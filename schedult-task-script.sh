@@ -1,18 +1,20 @@
 #!/bin/bash
-#Verificar el numero de argumentos 
+# Verify the number of arguments
 if [ $# -ne 2 ]; then
-	echo "Uso: <task_name> <periodicity>"
-	exit 1;
+    echo "Usage: <task_name> <periodicity>"
+    exit 1;
 fi
+
 task=$1
 periodicity=$2
-#Verificar si la tarea existe
+
+# Check if the task exists
 if ! [ -x "$(command -v $task)" ]; then
-	echo "Error: the command $task does not exist"
-	exit 1
+    echo "Error: the command $task does not exist"
+    exit 1
 fi
 
-#Agregar la tarea al crontab del usuario
+# Add the task to the user's crontab
 (crontab -l 2>/dev/null; echo "$periodicity $task") | crontab -
 
-echo "Task '$task' programmed with periodicity '$periodicity'"
+echo "Task '$task' scheduled with periodicity '$periodicity'"
