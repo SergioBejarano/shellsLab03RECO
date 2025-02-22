@@ -18,3 +18,7 @@ fi
 (crontab -l 2>/dev/null; echo "$periodicity $task") | crontab -
 
 echo "Task '$task' scheduled with periodicity '$periodicity'"
+
+echo "Checking for process ID..."
+sleep 2  
+pgrep -f "$task"
