@@ -14,11 +14,11 @@ if ! [ -x "$(command -v $task)" ]; then
     exit 1
 fi
 
+$task & 
+pid=$!
+
 # Add the task to the user's crontab
 (crontab -l 2>/dev/null; echo "$periodicity $task") | crontab -
 
 echo "Task '$task' scheduled with periodicity '$periodicity'"
-
-echo "Checking for process ID..."
-sleep 2  
-pgrep -f "$task"
+echo "Process ID: $pid"
