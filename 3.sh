@@ -2,7 +2,7 @@
 #traversing the file system from a given directory, including subdirectories
 
 if [ $# -ne 3 ]; then
-	echo "Usage <no_files> <max_size>"
+	echo "Usage <directory> <no_files> <max_size>"
 	exit 1;
 fi
 
