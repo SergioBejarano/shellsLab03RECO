@@ -23,12 +23,12 @@ while true; do
         ;;
         4)
             echo "Network interface details"
-            ethtool eth1
+            ethtool eth0
         ;;
         5)
             echo "Select protocol:"
-            echo "1. UDP"
-            echo "2. TCP"
+            echo "1. TCP"
+            echo "2. UDP"
             read protocol
             case $protocol in
                 1)
