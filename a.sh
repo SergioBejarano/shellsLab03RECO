@@ -29,6 +29,7 @@ while true; do
             echo "Select protocol:"
             echo "1. TCP"
             echo "2. UDP"
+            echo "3. ICMP"
             read protocol
             case $protocol in
                 1)
@@ -38,6 +39,10 @@ while true; do
                 2)
                     echo "UDP Connections: "
                     netstat -uan
+                ;;
+                3)
+                    echo "Showing ICMP stats if available:"
+                    netstat -s | grep -i icmp
                 ;;
                 *)
                     echo "Invalid Protocol Option"
