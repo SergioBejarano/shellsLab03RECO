@@ -1,0 +1,32 @@
+#!/bin/sh
+# Startup script for Nagios
+
+NAGIOS=/usr/local/nagios/bin/nagios
+CFG=/usr/local/nagios/etc/nagios.cfg
+LOCK=/var/run/nagios.lock
+
+case "$1" in
+  start)
+    echo "Starting Nagios..."
+    $NAGIOS -d $CFG
+    ;;
+  stop)
+    echo "Stopping Nagios..."
+    kill `cat $LOCK`
+    ;;
+  restart)
+    $0 stop
+    sleep 1
+    $0 start
+    ;;
+  status)
+    if [ -f $LOCK ]; then
+      echo "Nagios is running (PID `cat $LOCK`)"
+    else
+      echo "Nagios is not running"
+    fi
+    ;;
+  *)
+    echo "Usage: $0 {start|stop|restart|status}"
+    ;;
+esac
